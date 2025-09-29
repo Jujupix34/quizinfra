@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuizInfra - Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>🧠 QuizInfra</h1>
+    <div id="quiz-box">
+      <div id="progress-bar"></div>
+      <h2 id="question-title"></h2>
+      <div id="options"></div>
+      <div id="feedback"></div>
+      <button id="next-btn" style="display:none;">Próxima Pergunta</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "O que é uma Rede de Computadores, de acordo com seus componentes básicos?",
+        options: [
+          "Um conjunto de protocolos de comunicação que transformam dados em sinais elétricos.",
+          "Um sistema de comunicação de dados estabelecido pela interligação entre computadores e outros dispositivos, distribuídos geograficamente, com a finalidade de trocar informações e compartilhar recursos.",
+          "O conjunto de regras (protocolos) que define a maneira como os sinais eletromagnéticos são modulados no meio de transmissão.",
+          "A placa de rede (NIC), que atua como intérprete entre o computador e a rede, convertendo dados em sinais transmitidos."
+        ],
+        answer: 1,
+        explanation: "Uma rede de computadores é um sistema de comunicação entre dispositivos para troca de informações e compartilhamento de recursos."
+      },
+      {
+        question: "Qual dos itens abaixo é um componente básico de uma rede?",
+        options: [
+          "Cabo de Força e Sistema Operacional.",
+          "Servidores, access points e protocolos.",
+          "Controladores de domínio e Roteadores de Borda.",
+          "Meios de Armazenamento e Linguagens de Programação."
+        ],
+        answer: 1,
+        explanation: "Servidores, access points e protocolos são componentes básicos de uma rede."
+      },
+      {
+        question: "No processo de comunicação, qual elemento transmite a informação?",
+        options: ["Receptor", "Sinal", "Meio de Transmissão", "Emissor"],
+        answer: 3,
+        explanation: "O emissor é quem gera e transmite a informação."
+      },
+      {
+        question: "A rede PAN é caracterizada por:",
+        options: [
+          "Ser uma rede de larga escala que abrange países.",
+          "Ser uma rede de pequena área, como um campus universitário.",
+          "Ser uma rede que cobre uma cidade ou região metropolitana.",
+          "Ser uma rede de curtíssima distância (poucos metros), usada para conectar dispositivos pessoais."
+        ],
+        answer: 3,
+        explanation: "PAN é usada para conectar dispositivos pessoais em curtíssima distância, como Bluetooth."
+      },
+      {
+        question: "Qual tipo de rede é usada em casa, escola ou empresa?",
+        options: ["WAN", "MAN", "LAN", "PAN"],
+        answer: 2,
+        explanation: "LAN é uma rede local com alta taxa de transmissão, geralmente cabeada ou Wi-Fi."
+      },
+      {
+        question: "A WAN é definida por qual característica?",
+        options: [
+          "Cobre uma região limitada de um escritório.",
+          "Rede de área metropolitana que cobre uma cidade.",
+          "Rede de larga escala que conecta múltiplas LANs e MANs.",
+          "Rede sem fio de baixo consumo utilizada para dispositivos pessoais."
+        ],
+        answer: 2,
+        explanation: "WAN conecta LANs e MANs em larga escala, abrangendo países ou continentes."
+      },
+      {
+        question: "O que é uma Intranet?",
+        options: [
+          "Rede pública e global, sem restrição de acesso.",
+          "Extensão da rede privada que permite acesso externo controlado.",
+          "Rede privada de uma organização, acessível somente com login e senha.",
+          "Rede de pequena área física que utiliza o padrão Ethernet."
+        ],
+        answer: 2,
+        explanation: "Intranet é uma rede privada restrita a membros internos da organização."
+      },
+      {
+        question: "Qual termo define a rede com acesso externo controlado?",
+        options: ["Internet", "Extranet", "LAN", "VPN"],
+        answer: 1,
+        explanation: "Extranet permite acesso externo controlado a parceiros, fornecedores ou clientes."
+      },
+      {
+        question: "Rede pública e global que interliga milhões de dispositivos é chamada de:",
+        options: ["Extranet", "Intranet", "MAN", "Internet"],
+        answer: 3,
+        explanation: "Internet é uma rede pública e global acessível por qualquer pessoa conectada."
+      },
+      {
+        question: "Qual modo de transmissão permite envio e recepção simultânea?",
+        options: ["Half-Duplex", "Simplex", "Full-Duplex", "Multicast"],
+        answer: 2,
+        explanation: "Full-Duplex permite comunicação bidirecional simultânea."
+      },
+      {
+        question: "Walkie-talkie usa qual modo de transmissão?",
+        options: ["Simplex", "Full-Duplex", "Half-Duplex", "Broadcast"],
+        answer: 2,
+        explanation: "Half-Duplex permite comunicação nos dois sentidos, mas não ao mesmo tempo."
+      },
+      {
+        question: "Qual termo se aplica a dados enviados de um remetente para um destinatário?",
+        options: ["Broadcast", "Multicast", "Anycast", "Unicast"],
+        answer: 3,
+        explanation: "Unicast é comunicação entre um remetente e um único destinatário."
+      },
+      {
+        question: "Quando um quadro é enviado para todos os receptores, chamamos de:",
+        options: ["Unicast", "Multicast", "Anycast", "Broadcast"],
+        answer: 3,
+        explanation: "Broadcast envia dados para todos os dispositivos conectados."
+      }
+      
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const questionTitle = document.getElementById("question-title");
+    const optionsBox = document.getElementById("options");
+    const feedbackBox = document.getElementById("feedback");
+    const nextBtn = document.getElementById("next-btn");
+    const progressBar = document.getElementById("progress-bar");
+
+    function loadQuestion() {
+      const q = questions[current];
+      questionTitle.textContent = `Pergunta ${current + 1}: ${q.question}`;
+      optionsBox.innerHTML = "";
+      feedbackBox.textContent = "";
+      nextBtn.style.display = "none";
+      progressBar.style.width = `${((current + 1) / questions.length) * 100}%`;
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(i);
+        optionsBox.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const q = questions[current];
+      const correct = q.answer;
+
+      Array.from(optionsBox.children).forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === correct) {
+          btn.style.backgroundColor = "#4caf50";
+          btn.style.color = "white";
+        } else if (i === selected) {
+          btn.style.backgroundColor = "#f44336";
+          btn.style.color = "white";
+        }
+      });
+
+      if (selected === correct) score++;
+      feedbackBox.textContent = q.explanation;
+      nextBtn.style.display = "inline-block";
+    }
+
+    nextBtn.onclick = () => {
+      current++;
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    };
+
+    function showResult() {
+      document.getElementById("quiz-box").innerHTML = `
+        <h2>🎉 Quiz Concluído!</h2>
+        <p>Você acertou <strong>${score}</strong> de <strong>${questions.length}</strong> perguntas.</p>
+        <p>Desempenho: <strong>${Math.round((score / questions.length) * 100)}%</strong></p>
+        <button onclick="location.reload()">Refazer Quiz</button>
+        <a href="index.html"><button>Voltar ao Início</button></a>
+      `;
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

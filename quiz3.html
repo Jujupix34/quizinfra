@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Geral de Redes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #00BCD4, #4CAF50);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #fff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #00BCD4;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #00BCD4;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    button {
+      background-color: #00BCD4;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+    button:hover {
+      background-color: #0097A7;
+    }
+    #results {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+    .feedback p {
+      background: #e0f7fa;
+      padding: 10px;
+      border-left: 5px solid #00BCD4;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="topologia.html">Topologias</a>
+  <a href="transmissao.html">Meios de Transmissão</a>
+  <a href="comunicacao.html">Modos de Comunicação</a>
+  <a href="classificacao.html">Classificação de Redes</a>
+  <a href="ethernet.html">Padrão Ethernet</a>
+</nav>
+
+<div class="container">
+  <h1>Quiz Geral de Redes</h1>
+  <div id="quiz"></div>
+  <button id="submit">Finalizar Quiz</button>
+  <button id="retry" style="display:none;">Refazer Quiz</button>
+  <div id="results"></div>
+</div>
+
+<script>
+  const quizData = [
+    {
+      question: "Qual topologia conecta cada dispositivo diretamente a todos os outros?",
+      options: ["Estrela", "Barramento", "Malha", "Anel"],
+      answer: 2,
+      explanation: "Na topologia malha, cada dispositivo é conectado diretamente a todos os outros."
+    },
+    {
+      question: "Qual meio de transmissão guiado é mais usado em redes domésticas?",
+      options: ["Fibra óptica", "Par trançado", "Coaxial", "Micro-ondas"],
+      answer: 1,
+      explanation: "O par trançado é o mais comum em redes domésticas por seu custo-benefício."
+    },
+    {
+      question: "Qual modo de comunicação permite envio e recebimento simultâneo?",
+      options: ["Simplex", "Half-Duplex", "Full-Duplex", "Broadcast"],
+      answer: 2,
+      explanation: "Full-Duplex permite comunicação nos dois sentidos ao mesmo tempo."
+    },
+    {
+      question: "Qual rede cobre uma área como um campus universitário?",
+      options: ["LAN", "WAN", "MAN", "PAN"],
+      answer: 2,
+      explanation: "MAN (Metropolitan Area Network) cobre áreas urbanas como campus universitários."
+    },
+    {
+      question: "Qual padrão define o funcionamento do Ethernet?",
+      options: ["IEEE 802.3", "IEEE 802.11", "IEEE 802.15", "IEEE 802.1"],
+      answer: 0,
+      explanation: "O padrão IEEE 802.3 define as especificações do Ethernet."
+    },
+    {
+      question: "Qual topologia depende de um nó central para funcionar?",
+      options: ["Malha", "Estrela", "Barramento", "Anel"],
+      answer: 1,
+      explanation: "Na topologia estrela, todos os dispositivos se conectam a um nó central."
+    },
+    {
+      question: "Qual meio não guiado é mais usado em redes Wi-Fi?",
+      options: ["Micro-ondas", "Ondas de rádio", "Infravermelho", "Fibra óptica"],
+      answer: 1,
+      explanation: "As redes Wi-Fi utilizam ondas de rádio para comunicação sem fio."
+    },
+    {
+      question: "Qual tipo de entrega envia dados para todos os dispositivos da rede?",
+      options: ["Unicast", "Multicast", "Broadcast", "Anycast"],
+      answer: 2,
+      explanation: "Broadcast envia dados para todos os dispositivos da rede."
+    },
+    {
+      question: "Qual rede é mais usada em ambientes industriais?",
+      options: ["LAN", "WAN", "MAN", "PAN"],
+      answer: 0,
+      explanation: "LAN é usada em ambientes industriais para controle local de máquinas."
+    },
+    {
+      question: "Qual dispositivo conecta redes diferentes e encaminha pacotes?",
+      options: ["Switch", "Hub", "Roteador", "Modem"],
+      answer: 2,
+      explanation: "O roteador conecta redes diferentes e encaminha pacotes entre elas."
+    },
+    {
+      question: "Qual topologia é mais fácil de expandir sem afetar os dispositivos existentes?",
+      options: ["Barramento", "Estrela", "Anel", "Malha"],
+      answer: 1,
+      explanation: "Na topologia estrela, novos dispositivos podem ser adicionados facilmente ao nó central."
+    },
+    {
+      question: "Qual meio guiado é mais imune à interferência eletromagnética?",
+      options: ["Par trançado", "Fibra óptica", "Coaxial", "Micro-ondas"],
+      answer: 1,
+      explanation: "A fibra óptica transmite luz, não sinais elétricos, sendo imune à interferência eletromagnética."
+    },
+    {
+      question: "Qual modo de entrega envia dados para um grupo específico de destinatários?",
+      options: ["Broadcast", "Multicast", "Unicast", "Anycast"],
+      answer: 1,
+      explanation: "Multicast envia dados apenas para os dispositivos que fazem parte de um grupo."
+    },
+    {
+      question: "Qual rede cobre uma residência inteira com vários dispositivos conectados?",
+      options: ["LAN", "WAN", "MAN", "PAN"],
+      answer: 0,
+      explanation: "LAN é usada para conectar dispositivos em uma residência ou escritório."
+    },
+    {
+      question: "Qual dispositivo distribui pacotes com base no endereço MAC?",
+      options: ["Hub", "Switch", "Modem", "Roteador"],
+      answer: 1,
+      explanation: "O switch usa o endereço MAC para encaminhar pacotes ao destino correto."
+    },
+    {
+      question: "Qual topologia é mais vulnerável à falha do cabo principal?",
+      options: ["Malha", "Estrela", "Barramento", "Anel"],
+      answer: 2,
+      explanation: "Na topologia barramento, se o cabo principal falhar, toda a rede para."
+    },
+    {
+      question: "Qual meio não guiado exige linha de visão direta?",
+      options: ["Ondas de rádio", "Infravermelho", "Micro-ondas", "Fibra óptica"],
+      answer: 2,
+      explanation: "As micro-ondas exigem linha de visão direta entre os transmissores."
+    },
+    {
+      question: "Qual modo de comunicação é usado em transmissões de rádio?",
+      options: ["Simplex", "Half-Duplex", "Full-Duplex", "Multicast"],
+      answer: 0,
+      explanation: "Transmissões de rádio são unidirecionais, caracterizando o modo simplex."
+    },
+    {
+      question: "Qual rede é mais usada para conectar filiais de empresas em diferentes cidades?",
+      options: ["LAN", "WAN", "MAN", "PAN"],
+      answer: 1,
+      explanation: "WAN conecta redes locais em diferentes locais geográficos."
+    },
+    {
+      question: "Qual padrão Ethernet oferece velocidade de 10 Gbps?",
+      options: ["100BASE-T", "1000BASE-T", "10GBASE-T", "802.11ac"],
+      answer: 2,
+      explanation: "O padrão 10GBASE-T oferece velocidade de 10 Gbps."
+    },
+    {
+      question: "Qual topologia oferece maior redundância?",
+      options: ["Estrela", "Barramento", "Malha", "Anel"],
+      answer: 2,
+      explanation: "Na topologia malha, há múltiplos caminhos entre os dispositivos, oferecendo alta redundância."
+    },
+    {
+      question: "Qual meio guiado é mais usado em backbone de redes?",
+      options: ["Par trançado", "Coaxial", "Fibra óptica", "USB"],
+      answer: 2,
+      explanation: "A fibra óptica é usada em backbone por sua alta velocidade e capacidade."
+    },
+    {
+      question: "Qual modo de entrega é usado em redes sociais para enviar notificações a todos?",
+      options: ["Unicast", "Multicast", "Broadcast", "Anycast"],
+      answer: 2,
+      explanation: "Broadcast envia notificações para todos os usuários conectados."
+    },
+    {
+      question: "Qual rede é mais usada em dispositivos vestíveis como smartwatches?",
+      options: ["LAN", "WAN", "PAN", "MAN"],
+      answer: 2,
+      explanation: "PAN é ideal para comunicação entre dispositivos pessoais próximos."
+    },
+    {
+      question: "Qual dispositivo combina funções de modem e roteador?",
+      options: ["Switch", "Hub", "Access Point", "Gateway"],
+      answer: 3,
+      explanation: "O gateway pode combinar funções de modem e roteador."
+    },
+    {
+      question: "Qual topologia é mais usada em redes domésticas modernas?",
+      options: ["Barramento", "Estrela", "Malha", "Anel"],
+      answer: 1,
+      explanation: "A topologia estrela é a mais comum em redes domésticas, com roteadores como ponto central."
+    },
+    {
+      question: "Qual meio não guiado é mais usado em redes de sensores sem fio?",
+      options: ["Ondas de rádio", "Micro-ondas", "Infravermelho", "Fibra óptica"],
+      answer: 0,
+      explanation: "Ondas de rádio são usadas em redes de sensores sem fio pela flexibilidade e alcance."
+    },
+    {
+      question: "Qual modo de comunicação alterna entre envio e recebimento?",
+      options: ["Simplex", "Half-Duplex", "Full-Duplex", "Broadcast"],
+      answer: 1,
+      explanation: "Half-Duplex permite comunicação nos dois sentidos, mas não ao mesmo tempo."
+    },
+    {
+      question: "Qual rede é mais usada em redes bancárias entre agências?",
+      options: ["LAN", "WAN", "MAN", "PAN"],
+      answer: 1,
+      explanation: "WAN conecta agências bancárias em diferentes cidades ou países."
+    }
+  ];
+
+  const quizContainer = document.getElementById("quiz");
+  const resultsContainer = document.getElementById("results");
+  const submitButton = document.getElementById("submit");
+  const retryButton = document.getElementById("retry");
+
+  function buildQuiz() {
+    const output = [];
+
+    quizData.forEach((currentQuestion, questionNumber) => {
+      const options = currentQuestion.options.map((option, i) => `
+        <label>
+          <input type="radio" name="question${questionNumber}" value="${i}">
+          ${option}
+        </label>
+      `).join("");
+
+      output.push(`
+        <div class="question">
+          <h3>${questionNumber + 1}. ${currentQuestion.question}</h3>
+          <div class="options">${options}</div>
+        </div>
+      `);
+    });
+
+    quizContainer.innerHTML = output.join("");
+  }
+
+  function showResults() {
+    let score = 0;
+    const feedback = [];
+
+    quizData.forEach((currentQuestion, questionNumber) => {
+      const selector = `input[name=question${questionNumber}]:checked`;
+      const userAnswer = (document.querySelector(selector) || {}).value;
+
+      if (parseInt(userAnswer) === currentQuestion.answer) {
+        score++;
+        feedback.push(`<p><strong>${questionNumber + 1}.</strong> ✅ Correto!<br>${currentQuestion.explanation}</p>`);
+      } else {
+        feedback.push(`<p><strong>${questionNumber + 1}.</strong> ❌ Incorreto.<br>${currentQuestion.explanation}</p>`);
+      }
+    });
+
+    resultsContainer.innerHTML = `
+      <h2>Resultados</h2>
+      <p>Você acertou ${score} de ${quizData.length} perguntas.</p>
+      <div class="feedback">${feedback.join("")}</div>
+    `;
+
+    submitButton.style.display = "none";
+    retryButton.style.display = "block";
+  }
+
+  retryButton.addEventListener("click", () => {
+    location.reload();
+  });
+
+  submitButton.addEventListener("click", showResults);
+  buildQuiz();
+</script>
+
+</body>
+</html>
+

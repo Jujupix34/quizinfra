@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Missão Infraestrutura | QuizInfra</title>
+  <link rel="stylesheet" href="estilo-tabuleiro.css">
+</head>
+<body>
+  <h1>Missão Infraestrutura</h1>
+  <div id="board"></div>
+
+  <div id="question-box">
+    <div id="question">Clique em uma casa para começar!</div>
+    <button class="option">Opção 1</button>
+    <button class="option">Opção 2</button>
+    <button class="option">Opção 3</button>
+    <button class="option">Opção 4</button>
+    <div id="feedback"></div>
+  </div>
+
+  <!-- Sons -->
+  <audio id="somAcerto" src="assets/sounds/acerto.mp3"></audio>
+  <audio id="somErro" src="assets/sounds/erro.mp3"></audio>
+  <audio id="somFinal" src="assets/sounds/final.mp3"></audio>
+
+  <!-- Script -->
+  <script src="script-tabuleiro.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Fundamentos de Redes de Computadores</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background-color: #f9f9f9; }
+    h1, h2, h3 { color: #2c3e50; }
+    ul, li { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background-color: #ecf0f1; }
+    .section { margin-bottom: 40px; }
+  </style>
+</head>
+<body>
+
+  <h1>🌐 Fundamentos de Redes de Computadores</h1>
+
+  <div class="section">
+    <h2>I. Introdução às Redes</h2>
+    <p>Uma rede de computadores é um sistema de comunicação que conecta dispositivos para troca de informações e compartilhamento de recursos.</p>
+    <h3>🔧 Componentes Básicos</h3>
+    <ul>
+      <li><strong>Dispositivos finais:</strong> Computadores, celulares, servidores.</li>
+      <li><strong>Meios de transmissão:</strong> Cabos, fibras ópticas, ondas de rádio.</li>
+      <li><strong>Equipamentos de rede:</strong> Switches, roteadores, access points.</li>
+      <li><strong>Protocolos:</strong> Regras que definem como os dados são transmitidos.</li>
+    </ul>
+    <h3>🔁 Processo de Comunicação</h3>
+    <ul>
+      <li><strong>Emissor:</strong> Transmite a informação.</li>
+      <li><strong>Receptor:</strong> Recebe a mensagem.</li>
+      <li><strong>Sinal:</strong> Contém os dados.</li>
+      <li><strong>Meio de transmissão:</strong> Caminho entre emissor e receptor.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>II. Classificação das Redes</h2>
+    <h3>🌍 Por Abrangência Geográfica</h3>
+    <table>
+      <tr><th>Tipo</th><th>Definição</th><th>Exemplo</th></tr>
+      <tr><td>PAN</td><td>Rede pessoal de curtíssima distância</td><td>Bluetooth entre celular e fone</td></tr>
+      <tr><td>LAN</td><td>Rede local de alta velocidade</td><td>Wi-Fi de escritório ou campus</td></tr>
+      <tr><td>MAN</td><td>Rede metropolitana</td><td>Fibra óptica entre bairros</td></tr>
+      <tr><td>WAN</td><td>Rede de larga escala</td><td>A Internet</td></tr>
+    </table>
+
+    <h3>🔐 Por Tipo de Acesso</h3>
+    <table>
+      <tr><th>Tipo</th><th>Definição</th><th>Segurança</th><th>Uso Típico</th></tr>
+      <tr><td>Internet</td><td>Rede pública e global</td><td>HTTPS</td><td>Navegação, e-mails, streaming</td></tr>
+      <tr><td>Intranet</td><td>Rede privada de uma organização</td><td>Firewall, login</td><td>Comunicação interna</td></tr>
+      <tr><td>Extranet</td><td>Extensão da intranet com acesso externo</td><td>VPN, autenticação</td><td>Suporte a clientes, fornecedores</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>III. Modos de Transmissão e Entrega</h2>
+    <h3>🔄 Modos de Transmissão</h3>
+    <ul>
+      <li><strong>Simplex:</strong> Comunicação unidirecional (ex: TV).</li>
+      <li><strong>Half-duplex:</strong> Comunicação alternada (ex: walkie-talkie).</li>
+      <li><strong>Full-duplex:</strong> Comunicação simultânea (ex: chamada telefônica).</li>
+    </ul>
+    <h3>🎯 Modos de Entrega</h3>
+    <ul>
+      <li><strong>Unicast:</strong> Um para um.</li>
+      <li><strong>Multicast:</strong> Um para muitos selecionados.</li>
+      <li><strong>Broadcast:</strong> Um para todos.</li>
+      <li><strong>Anycast:</strong> Um para o mais próximo.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>IV. Topologias de Rede</h2>
+    <table>
+      <tr><th>Topologia</th><th>Estrutura</th><th>Vantagens</th><th>Desvantagens</th><th>Aplicações</th></tr>
+      <tr><td>Barramento</td><td>Um único cabo principal</td><td>Simples e barato</td><td>Ponto único de falha</td><td>Redes antigas</td></tr>
+      <tr><td>Anel</td><td>Dispositivos em círculo</td><td>Sem colisões</td><td>Falha em um nó afeta todos</td><td>Redes antigas</td></tr>
+      <tr><td>Estrela</td><td>Dispositivos conectados a um ponto central</td><td>Fácil de gerenciar</td><td>Falha no centro derruba a rede</td><td>Redes domésticas e corporativas</td></tr>
+      <tr><td>Malha</td><td>Múltiplos caminhos entre dispositivos</td><td>Alta robustez</td><td>Complexa e cara</td><td>Data centers, Wi-Fi Mesh</td></tr>
+      <tr><td>Híbrida</td><td>Combinação de topologias</td><td>Flexível e escalável</td><td>Projeto complexo</td><td>A Internet</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>V. Meios de Transmissão Guiados</h2>
+    <h3>🧵 Par Trançado</h3>
+    <ul>
+      <li>Dois fios de cobre entrelaçados.</li>
+      <li>Tipo UTP: Não blindado, barato e fácil de instalar.</li>
+      <li>Vantagens: Flexível, acessível, padrão Ethernet.</li>
+      <li>Limitações: Vulnerável a interferências, maior atenuação.</li>
+      <li>Padrões: Cat 5e, 6, 6A (até 10 Gbps), conectores RJ-45.</li>
+    </ul>
+
+    <h3>📺 Cabo Coaxial</h3>
+    <ul>
+      <li>Condutor central com malha metálica.</li>
+      <li>Vantagens: Boa proteção contra ruídos.</li>
+      <li>Limitações: Menos flexível, mais caro.</li>
+      <li>Aplicações: TV a cabo, redes antigas.</li>
+    </ul>
+
+    <h3>💡 Fibra Óptica</h3>
+    <ul>
+      <li>Transmite luz por núcleo de vidro ou plástico.</li>
+      <li>Tipos:
+        <ul>
+          <li>Monomodo: Longas distâncias, alta velocidade.</li>
+          <li>Multimodo: Curta/média distância, mais barato.</li>
+        </ul>
+      </li>
+      <li>Vantagens: Alta largura de banda, imune a interferências.</li>
+      <li>Limitações: Custo elevado, instalação complexa.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>VI. Meios de Transmissão Não Guiados</h2>
+    <h3>🌊 Ondas Eletromagnéticas</h3>
+    <ul>
+      <li>Energia que viaja pelo espaço.</li>
+      <li>Modulação:
+        <ul>
+          <li>AM: Amplitude.</li>
+          <li>FM: Frequência.</li>
+          <li>PM: Fase (Wi-Fi).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>📻 Ondas de Rádio</h3>
+    <ul>
+      <li>Frequência baixa, grande comprimento de onda.</li>
+      <li>Vantagens: Penetração em obstáculos, mobilidade.</li>
+      <li>Limitações: Interferência, segurança.</li>
+    </ul>
+
+    <h3>📡 Micro

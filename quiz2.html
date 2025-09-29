@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuizInfra - Quiz 2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>🧠 QuizInfra — Fixação de Conhecimentos</h1>
+    <div id="quiz-box">
+      <div id="progress-bar"></div>
+      <h2 id="question-title"></h2>
+      <div id="options"></div>
+      <div id="feedback"></div>
+      <button id="next-btn" style="display:none;">Próxima Pergunta</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Qual tipo de rede permite acesso externo controlado a parceiros?",
+        options: ["Internet", "Intranet", "Extranet", "PAN"],
+        answer: 2,
+        explanation: "A Extranet é uma extensão da rede interna que permite acesso seguro a usuários externos."
+      },
+      {
+        question: "Qual a função dos terminadores na topologia em Barramento?",
+        options: [
+          "Amplificar o sinal elétrico",
+          "Absorver sinais e evitar reflexão",
+          "Conceder permissão de transmissão",
+          "Converter sinal elétrico em óptico"
+        ],
+        answer: 1,
+        explanation: "Os terminadores evitam reflexões que causariam interferência no cabo principal."
+      },
+      {
+        question: "Qual é a principal característica do modo Full-Duplex?",
+        options: [
+          "Fluxo unidirecional",
+          "Comunicação alternada",
+          "Anycast",
+          "Transmissão e recepção simultânea"
+        ],
+        answer: 3,
+        explanation: "Full-Duplex permite transmitir e receber dados ao mesmo tempo."
+      },
+      {
+        question: "Qual a diferença entre meios guiados e não guiados?",
+        options: [
+          "Guiados usam luz, não guiados usam eletricidade",
+          "Guiados são de longa distância",
+          "Guiados usam cabos físicos, não guiados viajam pelo ar",
+          "Guiados usam CSMA/CD"
+        ],
+        answer: 2,
+        explanation: "Meios guiados usam cabos físicos, enquanto os não guiados transmitem pelo ar."
+      },
+      {
+        question: "Como o Switch elimina colisões na topologia Estrela?",
+        options: [
+          "Amplifica e repete sinal",
+          "Usa Token Ring",
+          "É um roteador de camada 3",
+          "Cria domínios de colisão dedicados"
+        ],
+        answer: 3,
+        explanation: "O Switch cria domínios de colisão dedicados por porta, permitindo comunicação full-duplex."
+      },
+      {
+        question: "Como funciona o método Token Ring na topologia em Anel?",
+        options: [
+          "Transmissão por linha de visão",
+          "Prioridade ao nó mais distante",
+          "Transmissão com posse do token",
+          "CSMA/CD"
+        ],
+        answer: 2,
+        explanation: "O token circula e só quem o possui pode transmitir, evitando colisões."
+      },
+      {
+        question: "Por que os fios são trançados no Cabo UTP?",
+        options: [
+          "Aumenta velocidade",
+          "Torna o cabo mais rígido",
+          "Permite flexibilidade",
+          "Cancela interferência eletromagnética"
+        ],
+        answer: 3,
+        explanation: "O trançamento cancela EMI e melhora a qualidade do sinal."
+      },
+      {
+        question: "Qual tipo de cabo não possui blindagem adicional?",
+        options: ["STP", "Cat 6A", "UTP", "Coaxial"],
+        answer: 2,
+        explanation: "UTP é não blindado, mais suscetível a ruídos."
+      },
+      {
+        question: "Onde o Cabo Coaxial ainda é amplamente usado?",
+        options: ["Fibra óptica", "LAN Gigabit", "Bluetooth/Wi-Fi", "Televisão a cabo (CATV)"],
+        answer: 3,
+        explanation: "O Coaxial é dominante em redes de TV a cabo e banda larga."
+      },
+      {
+        question: "Qual fenômeno mantém o sinal confinado na fibra óptica?",
+        options: [
+          "Difração",
+          "Modulação de fase",
+          "Reflexão interna total",
+          "Uso de LEDs"
+        ],
+        answer: 2,
+        explanation: "A reflexão interna total mantém o sinal confinado no núcleo da fibra."
+      },
+      {
+        question: "Por que a Fibra Monômodo é ideal para longas distâncias?",
+        options: [
+          "Núcleo grosso",
+          "Feita de plástico",
+          "Usa LED",
+          "Núcleo fino com único caminho de luz"
+        ],
+        answer: 3,
+        explanation: "A luz viaja em um único modo, ideal para longas distâncias e alta velocidade."
+      },
+      {
+        question: "O que é Largura de Banda?",
+        options: [
+          "Tempo de resposta",
+          "Atenuação",
+          "Capacidade máxima de transmissão",
+          "Conjunto de protocolos"
+        ],
+        answer: 2,
+        explanation: "Largura de Banda é a capacidade máxima de transmissão de dados."
+      },
+      {
+        question: "O que é Atenuação do Sinal?",
+        options: [
+          "Modulação digital",
+          "Ganho de potência",
+          "Perda de intensidade do sinal",
+          "Risco de colisão"
+        ],
+        answer: 2,
+        explanation: "Atenuação é a perda de intensidade à medida que o sinal percorre o meio."
+      },
+      {
+        question: "Qual desvantagem crítica das micro-ondas?",
+        options: [
+          "Imunidade total",
+          "Atravessam obstáculos",
+          "Sensíveis à chuva e exigem linha de visão",
+          "Não usadas em satélites"
+        ],
+        answer: 2,
+        explanation: "Micro-ondas são sensíveis à chuva e exigem linha de visão desobstruída."
+      },
+      {
+        question: "Qual vantagem das ondas de rádio?",
+        options: [
+          "Largura de banda ilimitada",
+          "Linha de visão obrigatória",
+          "Penetram obstáculos",
+          "Alta atenuação por chuva"
+        ],
+        answer: 2,
+        explanation: "Ondas de rádio penetram obstáculos como paredes, ideais para ambientes urbanos."
+      },
+      {
+        question: "Por que o espectro eletromagnético é regulamentado?",
+        options: [
+          "Definir tamanho do MAC",
+          "Evitar interferências e organizar frequências",
+          "Garantir Full-Duplex",
+          "Impedir propagação por linha de visão"
+        ],
+        answer: 1,
+        explanation: "Agências regulam o espectro para evitar interferências e garantir comunicação eficiente."
+      },
+      {
+        question: "Qual é a função da tecnologia Ethernet?",
+        options: [
+          "Modulação de fase em Wi-Fi",
+          "Redes WAN sem fio",
+          "Redes LAN cabeadas com alto desempenho",
+          "Protocolo de roteamento global"
+        ],
+        answer: 2,
+        explanation: "Ethernet é padrão para redes LAN cabeadas, garantindo desempenho confiável."
+      },
+      {
+        question: "Qual é a função da Placa de Rede (NIC)?",
+        options: [
+          "Armazenar tabela de roteamento",
+          "Converter dados em sinais para transmissão",
+          "Atribuir IP",
+          "Roteamento entre redes"
+        ],
+        answer: 1,
+        explanation: "A NIC converte dados em sinais para transmissão e recepção."
+      },
+      {
+        question: "Qual é a natureza e tamanho do Endereço MAC?",
+        options: [
+          "Lógico de 32 bits",
+          "Virtual atribuído por software",
+          "Físico único de 48 bits",
+          "Lógico de 128 bits"
+        ],
+        answer: 2,
+        explanation: "O endereço MAC é um identificador físico único de 48 bits."
+      },
+      {
+        question: "Qual é o benefício da Topologia Híbrida?",
+        options: [
+          "Menos escalável",
+          "Combina topologias para flexibilidade e desempenho",
+          "Uso exclusivo de Cat 3",
+          "Ponto único de falha"
+        ],
+        answer: 1,
+        explanation: "A topologia híbrida combina estruturas para otimizar desempenho e confiabilidade."
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const questionTitle = document.getElementById("question-title");
+    const optionsBox = document.getElementById("options");
+    const feedbackBox = document.getElementById("feedback");
+    const nextBtn = document.getElementById("next-btn");
+    const progressBar = document.getElementById("progress-bar");
+
+        function loadQuestion() {
+          const q = questions[current];
+          questionTitle.textContent = `${q.question}`;
+    
+          
+          optionsBox.innerHTML = "";
+          feedbackBox.textContent = "";
+          nextBtn.style.display = "none";
+    
+          
+          progressBar.style.width = `${((current + 1) / questions.length) * 100}%`;
+          progressBar.textContent = `Pergunta ${current + 1} de ${questions.length}`;
+    
+          
+          q.options.forEach((opt, idx) => {
+            const btn = document.createElement("button");
+            btn.textContent = opt;
+            btn.className = "option-btn";
+            btn.onclick = () => selectOption(idx);
+            optionsBox.appendChild(btn);
+          });
+        }
+    
+        function selectOption(idx) {
+          const q = questions[current];
+          const correct = idx === q.answer;
+          if (correct) {
+            score++;
+            feedbackBox.textContent = "✅ Correto! " + q.explanation;
+            feedbackBox.style.color = "green";
+          } else {
+            feedbackBox.textContent = `❌ Incorreto. ${q.explanation}`;
+            feedbackBox.style.color = "red";
+          }
+          // Disable all option buttons
+          Array.from(optionsBox.children).forEach(btn => btn.disabled = true);
+          nextBtn.style.display = "inline-block";
+        }
+    
+        nextBtn.onclick = () => {
+          current++;
+          if (current < questions.length) {
+            loadQuestion();
+          } else {
+            showResults();
+          }
+        };
+    
+        function showResults() {
+          questionTitle.textContent = "Quiz Finalizado!";
+          optionsBox.innerHTML = "";
+          progressBar.style.width = "100%";
+          progressBar.textContent = "Concluído";
+          feedbackBox.innerHTML = `<strong>Você acertou ${score} de ${questions.length} perguntas.</strong>`;
+          nextBtn.style.display = "none";
+        }
+    
+        
+        loadQuestion();
+      </script>
+    </body>
+    </html>
