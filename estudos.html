@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resumo de Infraestrutura | QuizInfra</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #eef2f3, #cfd9df);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #2980b9;
+      margin-top: 40px;
+    }
+    h3 {
+      color: #2c3e50;
+      margin-top: 20px;
+    }
+    ul {
+      margin-left: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #ecf0f1;
+    }
+    .highlight {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-left: 4px solid #3498db;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Resumo Temático de Infraestrutura para Sistemas</h1>
+
+    <h2>I. Introdução e Conceitos Fundamentais</h2>
+    <div class="highlight">
+      <strong>Rede de Computadores:</strong> Sistema de comunicação entre dispositivos distribuídos geograficamente para troca de informações e compartilhamento de recursos.
+    </div>
+    <h3>Componentes e Processo de Comunicação</h3>
+    <ul>
+      <li><strong>Emissor:</strong> Gera a informação.</li>
+      <li><strong>Receptor:</strong> Recebe a mensagem.</li>
+      <li><strong>Sinal:</strong> Dados transmitidos.</li>
+      <li><strong>Meio de Transmissão:</strong> Caminho físico ou lógico da mensagem.</li>
+    </ul>
+
+    <h2>II. Classificação das Redes</h2>
+    <h3>A. Por Abrangência Geográfica</h3>
+    <table>
+      <tr><th>Tipo</th><th>Abrangência</th><th>Características</th></tr>
+      <tr><td>PAN</td><td>Curtíssima distância</td><td>Bluetooth, dispositivos pessoais</td></tr>
+      <tr><td>LAN</td><td>Pequena área</td><td>Alta taxa de transmissão, cabeada ou Wi-Fi</td></tr>
+      <tr><td>MAN</td><td>Cidade ou região</td><td>Usada por provedores ou órgãos públicos</td></tr>
+      <tr><td>WAN</td><td>Países ou continentes</td><td>Conecta múltiplas LANs e MANs</td></tr>
+    </table>
+
+    <h3>B. Quanto ao Acesso/Usuário</h3>
+    <ul>
+      <li><strong>Internet:</strong> Rede pública e global</li>
+      <li><strong>Intranet:</strong> Rede privada e restrita</li>
+      <li><strong>Extranet:</strong> Extensão da intranet com acesso externo controlado</li>
+    </ul>
+
+    <h2>III. Fluxo e Modos de Transmissão</h2>
+    <h3>A. Modos de Transmissão</h3>
+    <ul>
+      <li><strong>Simplex:</strong> Uma direção (ex: rádio)</li>
+      <li><strong>Half-Duplex:</strong> Alternado (ex: walkie-talkie)</li>
+      <li><strong>Full-Duplex:</strong> Simultâneo</li>
+    </ul>
+    <h3>B. Modos de Entrega</h3>
+    <ul>
+      <li><strong>Unicast:</strong> Um para um</li>
+      <li><strong>Multicast:</strong> Um para grupo</li>
+      <li><strong>Broadcast:</strong> Um para todos</li>
+      <li><strong>Anycast:</strong> Um para o mais próximo</li>
+    </ul>
+
+    <h2>IV. Topologias de Rede</h2>
+    <table>
+      <tr><th>Topologia</th><th>Estrutura</th><th>Vantagens</th><th>Desvantagens</th></tr>
+      <tr><td>Barramento</td><td>Backbone único</td><td>Simples e barato</td><td>Ponto único de falha</td></tr>
+      <tr><td>Anel</td><td>Conexão circular</td><td>Sem colisões</td><td>Interrupção afeta toda a rede</td></tr>
+      <tr><td>Estrela</td><td>Ponto central</td><td>Alta tolerância a falhas</td><td>Switch é ponto de falha</td></tr>
+      <tr><td>Malha</td><td>Múltiplos caminhos</td><td>Máxima robustez</td><td>Alto custo</td></tr>
+      <tr><td>Híbrida</td><td>Combinação</td><td>Flexível</td><td>Complexa</td></tr>
+    </table>
+
+    <h2>V. Meios de Transmissão Guiados</h2>
+    <h3>Cabo Coaxial</h3>
+    <ul>
+      <li>Condutor central + blindagem</li>
+      <li>Alta proteção contra ruídos</li>
+      <li>Usado em CATV e banda larga</li>
+    </ul>
+    <h3>Par Trançado</h3>
+    <ul>
+      <li>UTP: não blindado, comum em Ethernet</li>
+      <li>STP: blindado, maior proteção</li>
+      <li>Cat 5e: até 1 Gbps | Cat 6A: até 10 Gbps</li>
+    </ul>
+    <h3>Fibra Óptica</h3>
+    <ul>
+      <li>Transmissão por luz</li>
+      <li>Monômodo: laser, longas distâncias</li>
+      <li>Multimodo: LED, curtas distâncias</li>
+      <li>Imune a interferências e alta segurança</li>
+    </ul>
+
+    <h2>VI. Meios Não Guiados (Wireless)</h2>
+    <ul>
+      <li><strong>Ondas de Rádio:</strong> Penetram obstáculos, eficazes em ambientes urbanos</li>
+      <li><strong>Micro-ondas:</strong> Alta capacidade, requer linha de visão, sensível à chuva</li>
+    </ul>
+
+    <h2>VII. Padrão Ethernet (IEEE 802.3)</h2>
+    <ul>
+      <li>Endereço MAC: identificador físico único</li>
+      <li>NIC: Placa de rede que conecta o dispositivo</li>
+      <li>CSMA/CD: controle de acesso em hubs</li>
+      <li>Switches modernos: comunicação full-duplex</li>
+      <li>Velocidades de 10 Mbps a 100+ Gbps</li>
+    </ul>
+  </div>
+</body>
+</html>
