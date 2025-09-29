@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aprendizado | QuizInfra</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #eef2f3, #cfd9df);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #2980b9;
+      margin-top: 40px;
+    }
+    h3 {
+      color: #2c3e50;
+      margin-top: 20px;
+    }
+    ul {
+      margin-left: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #ecf0f1;
+    }
+    .highlight {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-left: 4px solid #3498db;
+      margin: 10px 0;
+    }
+    .image-block {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .image-block img {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fundamentos de Redes de Computadores</h1>
+
+    <h2>I. O que é uma Rede de Computadores?</h2>
+    <div class="highlight">
+      Sistema de comunicação de dados que permite troca de informações e compartilhamento de recursos entre dispositivos distribuídos geograficamente.
+    </div>
+    <h3>Componentes Básicos</h3>
+    <ul>
+      <li><strong>Dispositivos Finais:</strong> Computadores, celulares, servidores.</li>
+      <li><strong>Meios de Transmissão:</strong> Cabos, fibras ópticas, ondas de rádio.</li>
+      <li><strong>Equipamentos de Rede:</strong> Switches, roteadores.</li>
+      <li><strong>Protocolos:</strong> Regras de transmissão de dados.</li>
+    </ul>
+    <div class="image-block">
+      <img src="https://caracteristicas.pt/wp-content/uploads/2021/10/redes-de-computadores.jpg" alt="Componentes de uma rede de computadores">
+    </div>
+
+    <h3>Processo de Comunicação</h3>
+    <ul>
+      <li><strong>Emissor:</strong> Gera a informação.</li>
+      <li><strong>Receptor:</strong> Recebe a mensagem.</li>
+      <li><strong>Sinal:</strong> Dados transmitidos.</li>
+      <li><strong>Meio de Transmissão:</strong> Caminho físico ou lógico da mensagem.</li>
+    </ul>
+
+    <h2>II. Classificação das Redes</h2>
+    <h3>Por Abrangência Geográfica</h3>
+    <table>
+      <tr><th>Tipo</th><th>Descrição</th><th>Exemplo Prático</th></tr>
+      <tr><td>PAN</td><td>Rede pessoal de curtíssima distância</td><td>Bluetooth entre celular e fone</td></tr>
+      <tr><td>LAN</td><td>Rede local de alta velocidade</td><td>Wi-Fi doméstico</td></tr>
+      <tr><td>MAN</td><td>Rede metropolitana</td><td>Fibra óptica entre bairros</td></tr>
+      <tr><td>WAN</td><td>Rede de larga escala</td><td>Internet</td></tr>
+    </table>
+    <div class="image-block">
+      <img src="https://2.bp.blogspot.com/-FjOH_k0ghu4/U2sJp3iWg2I/AAAAAAAAASQ/y5Su35bikcc/s1600/ManPanWanLan.jpg" alt="Tipos de redes PAN LAN MAN WAN">
+    </div>
+
+    <h3>Quanto ao Acesso/Usuário</h3>
+    <ul>
+      <li><strong>Internet:</strong> Rede pública e global.</li>
+      <li><strong>Intranet:</strong> Rede privada e restrita.</li>
+      <li><strong>Extranet:</strong> Extensão da intranet com acesso externo controlado.</li>
+    </ul>
+
+    <h2>III. Modos de Transmissão</h2>
+    <h3>Fluxo de Dados</h3>
+    <ul>
+      <li><strong>Simplex:</strong> Uma direção (ex: rádio).</li>
+      <li><strong>Half-Duplex:</strong> Alternado (ex: walkie-talkie).</li>
+      <li><strong>Full-Duplex:</strong> Simultâneo (ex: chamada telefônica).</li>
+    </ul>
+    <h3>Modos de Entrega</h3>
+    <ul>
+      <li><strong>Unicast:</strong> Um para um.</li>
+      <li><strong>Multicast:</strong> Um para grupo.</li>
+      <li><strong>Broadcast:</strong> Um para todos.</li>
+      <li><strong>Anycast:</strong> Um para o mais próximo.</li>
+    </ul>
+
+    <h2>IV. Topologias de Rede</h2>
+    <table>
+      <tr><th>Topologia</th><th>Estrutura</th><th>Vantagens</th><th>Desvantagens</th></tr>
+      <tr><td>Barramento</td><td>Backbone único</td><td>Simples e barato</td><td>Ponto único de falha</td></tr>
+      <tr><td>Anel</td><td>Conexão circular</td><td>Sem colisões</td><td>Interrupção afeta toda a rede</td></tr>
+      <tr><td>Estrela</td><td>Ponto central</td><td>Alta tolerância a falhas</td><td>Switch é ponto de falha</td></tr>
+      <tr><td>Malha</td><td>Múltiplos caminhos</td><td>Máxima robustez</td><td>Alto custo</td></tr>
+      <tr><td>Híbrida</td><td>Combinação</td><td>Flexível</td><td>Complexa</td></tr>
+    </table>
+    <div class="image-block">
+      <img src="https://media.licdn.com/dms/image/D4D12AQE2c-RhzTpuIA/article-cover_image-shrink_720_1280/0/1686661773900?e=2147483647&v=beta&t=OCfu10k_lr-y46YxBs0ABscGtPRTDrc6wisrNqMs8JI" alt="Topologias de rede">
+    </div>
+    <h2>V. Meios de Transmissão</h2>
+    <h3>Conceitos Relacionados</h3>
+    <ul>
+      <li><strong>Largura de Banda:</strong> Capacidade de transportar dados (bps).</li>
+      <li><strong>Atenuação:</strong> Perda de intensidade do sinal com a distância.</li>
+    </ul>
+
+    <h3>A. Meios Guiados</h3>
+    <h4>Cabo Coaxial</h4>
+    <ul>
+      <li>Condutor central com blindagem metálica.</li>
+      <li>Alta proteção contra interferências.</li>
+      <li>Usado em CATV e banda larga.</li>
+    </ul>
+    <h4>Par Trançado</h4>
+    <ul>
+      <li>UTP: não blindado, comum em Ethernet.</li>
+      <li>STP: blindado, maior proteção.</li>
+      <li>Conector RJ-45.</li>
+    </ul>
+    <h4>Fibra Óptica</h4>
+    <ul>
+      <li>Transmissão por luz (LED ou laser).</li>
+      <li>Monomodo: longas distâncias, alta velocidade.</li>
+      <li>Multimodo: curtas distâncias, mais barato.</li>
+    </ul>
+    <div class="image-block">
+      <img src="https://image.slidesharecdn.com/apresentao-130531171019-phpapp02/95/meios-guiado-de-transmisso-23-638.jpg?cb=1370020261" alt="Comparação entre cabos coaxiais, par trançado e fibra óptica">
+    </div>
+
+    <h3>B. Meios Não Guiados</h3>
+    <h4>Ondas de Rádio</h4>
+    <ul>
+      <li>Frequência baixa, longa distância.</li>
+      <li>Penetram obstáculos.</li>
+      <li>Usadas em Wi-Fi, Bluetooth, redes móveis.</li>
+    </ul>
+    <h4>Micro-ondas</h4>
+    <ul>
+      <li>Alta frequência, linha de visão.</li>
+      <li>Sensíveis à chuva e neblina.</li>
+      <li>Usadas em comunicação via satélite e torres de celular.</li>
+    </ul>
+    <div class="image-block">
+      <img src="https://image.slidesharecdn.com/tema-5paraaulaprtica-copiacorrigida-161130144058/95/tema-5para-aulaprtica-24-638.jpg?cb=1480517283" alt="Meios de transmissão sem fio">
+    </div>
+
+    <h2>VI. Ethernet e Controle de Acesso</h2>
+    <h3>Padrão IEEE 802.3</h3>
+    <ul>
+      <li>Ethernet é o padrão dominante para LANs cabeadas.</li>
+      <li>Usa cabos de par trançado ou fibra óptica.</li>
+      <li>Conectores RJ-45 e switches inteligentes.</li>
+    </ul>
+
+    <h3>Placa de Rede (NIC) e Endereço MAC</h3>
+    <ul>
+      <li>NIC converte dados em sinais para transmissão.</li>
+      <li>Endereço MAC é único e identifica o dispositivo na rede.</li>
+      <li>Switch usa MAC para encaminhar dados corretamente.</li>
+    </ul>
+
+    <h3>Transmissão com Switch</h3>
+    <ol>
+      <li>Computador envia dados à NIC.</li>
+      <li>NIC encapsula em quadros com MAC de destino.</li>
+      <li>Switch recebe e encaminha para a porta correta.</li>
+      <li>Dispositivo de destino recebe e processa os dados.</li>
+    </ol>
+
+    <h3>CSMA/CD e Evolução</h3>
+    <ul>
+      <li>CSMA/CD era usado em redes com hubs para evitar colisões.</li>
+      <li>Switches modernos eliminam colisões com comunicação full-duplex.</li>
+      <li>CSMA/CD permanece no padrão por compatibilidade, mas não é mais usado na prática.</li>
+    </ul>
+    <div class="image-block">
+      <img src="https://www.dltec.com.br/blog/wp-content/uploads/2022/12/UPLINKS-E-ACESSO.png" alt="Funcionamento da Ethernet com switches">
+    </div>
+    <a href="index.html" class="back-button">← Voltar ao Início</a>
+  </div>
+</body>
+</html>
