@@ -12,15 +12,19 @@
       color: white;
       text-align: center;
       padding: 50px;
+      transition: background 0.3s, color 0.3s;
     }
+
     h1 {
       font-size: 3em;
       margin-bottom: 20px;
     }
+
     p {
       font-size: 1.2em;
       margin-bottom: 40px;
     }
+
     a.button {
       display: inline-block;
       padding: 15px 30px;
@@ -32,22 +36,60 @@
       font-size: 1em;
       transition: background 0.3s;
     }
+
     a.button:hover {
       background-color: #0072ff;
     }
-  </style>
-  <script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js")
-      .then(() => console.log("Service Worker registrado!"))
-      .catch(err => console.error("Erro ao registrar SW:", err));
-  }
-</script>
 
+    /* Estilos do modo escuro */
+    body.dark-mode {
+      background: linear-gradient(to right, #000000, #1e1e1e);
+      color: #f0f0f0;
+    }
+
+    .dark-mode a.button {
+      background-color: #444;
+      color: #f0f0f0;
+    }
+
+    .dark-mode a.button:hover {
+      background-color: #666;
+    }
+
+    .toggle-dark {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px 15px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+  </style>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("Service Worker registrado!"))
+        .catch(err => console.error("Erro ao registrar SW:", err));
+    }
+
+    // Script do modo escuro
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 </head>
+
 <body>
+  <button class="toggle-dark" onclick="toggleDarkMode()">🌙 Modo Escuro</button>
+
   <h1>QuizInfra</h1>
   <p>Teste seus conhecimentos em infraestrutura de redes ou revise os conteúdos antes de começar.</p>
+
   <a href="quiz.html" class="button">🎯 Iniciar Quiz</a>
   <a href="estudos.html" class="button">📘 Estudar Antes</a>
   <a href="sobre.html" class="button">ℹ️ Sobre o QuizInfra</a>
@@ -59,7 +101,3 @@
   <a href="infraestrutura.html" class="button">Infraestrutura de Redes</a>
 </body>
 </html>
-
-
-
-
