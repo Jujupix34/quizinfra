@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>QuizInfra</title>
+  <link rel="manifest" href="manifest.json">
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -35,6 +37,14 @@
       background-color: #0072ff;
     }
   </style>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("Service Worker registrado!"))
+      .catch(err => console.error("Erro ao registrar SW:", err));
+  }
+</script>
+
 </head>
 <body>
   <h1>QuizInfra</h1>
@@ -50,5 +60,6 @@
   <a href="infraestrutura.html" class="button">Infraestrutura de Redes</a>
 </body>
 </html>
+
 
 
