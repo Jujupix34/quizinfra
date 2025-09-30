@@ -77,9 +77,19 @@
         .catch(err => console.error("Erro ao registrar SW:", err));
     }
 
-    // Script do modo escuro
+  
+    window.onload = function () {
+      const darkModeAtivo = localStorage.getItem("modoEscuro");
+      if (darkModeAtivo === "true") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+
+    
     function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
+      document.body.classList.toggle("dark-mode");
+      const modoAtivo = document.body.classList.contains("dark-mode");
+      localStorage.setItem("modoEscuro", modoAtivo);
     }
   </script>
 </head>
@@ -101,3 +111,4 @@
   <a href="infraestrutura.html" class="button">Infraestrutura de Redes</a>
 </body>
 </html>
+
